@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "/redis.conf"]
+    volumes:
+      - type: volume
+        source: redis-data
+        target: /redis.conf
+  api:
+    container_name: api
+    build: 
+      context: ./backend
+      dockerfile: api.Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 1
+      GRAPHQL_ENDPOINT: https://countries.trevorblades.com/
+    depends_on:
+      - redis
+  ui:
+    container_name: ui
+    build: 
+      context: ./ui
+      dockerfile: ui.Dockerfile
+    ports: 
+      - "8080:80"
+volumes:
+  redis-data:
