@@ -14,7 +14,7 @@ export default {
         FETCH_CONTINENTS: async ({ commit }) => {
             let data = [];
             EventBus.$emit('SHOW_LOADER', 1);
-            const result = await fetch(`${process.env.API_BASE_URL}/continent`).catch((error) => {
+            const result = await fetch(`${process.env.VUE_APP_API_BASE_URL}/continent`).catch((error) => {
                 console.log(error);
             });
             if (result) {

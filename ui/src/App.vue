@@ -96,7 +96,7 @@ export default {
     },
     methods: {
         async initData() {
-            
+            await this.$store.dispatch('continent/FETCH_CONTINENTS');
         },
         initEventHandlers: function() {
             EventBus.$on('SHOW_ERROR', (payload) => {

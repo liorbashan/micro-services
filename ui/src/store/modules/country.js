@@ -14,7 +14,7 @@ export default {
         FETCH_COUNTRIES: async ({ commit }, continentCode) => {
             let data = [];
             EventBus.$emit('SHOW_LOADER', 1);
-            const result = await fetch(`${process.env.API_BASE_URL}/country/${continentCode}`).catch((error) => {
+            const result = await fetch(`${process.env.VUE_APP_API_BASE_URL}/country/${continentCode}`).catch((error) => {
                 console.log(error);
             });
             if (result) {
