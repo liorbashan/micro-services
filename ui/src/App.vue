@@ -1,12 +1,12 @@
 <template>
     <v-app id="inspire">
         <!-- HEADER START -->
-        <v-app-bar color="deep-purple accent-4" dense dark>
+        <v-app-bar app color="deep-purple accent-4" dense dark>
             <v-toolbar-title>World Countries</v-toolbar-title>
         </v-app-bar>
         <!-- HEADER END -->
         <v-main>
-            <v-container class="pa-0 white align-start" fill-height fluid>
+            <v-container class="pa-2 white align-start" fill-height fluid>
                 <router-view />
             </v-container>
         </v-main>
