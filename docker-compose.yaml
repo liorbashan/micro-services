@@ -22,7 +22,7 @@ services:
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_DB: 1
-      GRAPHQL_ENDPOINT: https://countries.trevorblades.com/
+      GRAPHQL_ENDPOINT: http://countries.trevorblades.com/
     depends_on:
       - redis
   ui:
