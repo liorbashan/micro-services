@@ -14,9 +14,10 @@ const routes = [
         },
     },
     {
-        path: '/country',
+        path: '/country/:code',
         name: 'Country',
         component: Country,
+        props: true,
     },
 ];
 

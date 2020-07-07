@@ -6,20 +6,20 @@ export default {
         countries: [],
     },
     mutations: {
-        SET_COUNTRIES: (state, countries) => {
-            state.countries = countries;
+        SET_COUNTRIES: (state, data) => {
+            state.countries = data;
         },
     },
     actions: {
         FETCH_COUNTRIES: async ({ commit }, continentCode) => {
             let data = [];
             EventBus.$emit('SHOW_LOADER', 1);
-            const result = await fetch(`${process.env.VUE_APP_API_BASE_URL}/country/${continentCode}`).catch((error) => {
+            const result = await (await fetch(`${process.env.VUE_APP_API_BASE_URL}/country/${continentCode}`)).json().catch((error) => {
                 console.log(error);
             });
             if (result) {
-                data = result;
-                commit('SET_COUNTRIES');
+                data = result.countries;
+                commit('SET_COUNTRIES', data);
             }
             EventBus.$emit('HIDE_LOADER', 1);
             return data;

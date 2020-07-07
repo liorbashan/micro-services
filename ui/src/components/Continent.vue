@@ -37,7 +37,7 @@ export default {
     methods:{
         goToCountry(val){
             const code=val.code;
-            console.log(code);
+            this.$router.push({ name: 'Country', params: { code: code } });
         }
     }
 };
