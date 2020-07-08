@@ -6,10 +6,7 @@ import { IGraphqlService } from './../interfaces/IGraphqlService';
 import { ICacheService } from './../interfaces/ICacheService';
 
 export class CountryRepository {
-    public _cacheService: ICacheService;
-    public _graphqlService: IGraphqlService;
-
-    constructor() {
+    constructor(protected _cacheService: ICacheService, protected _graphqlService: IGraphqlService) {
         this._cacheService = Container.get(CacheService);
         this._graphqlService = Container.get(GraphqlService);
     }

@@ -6,10 +6,8 @@ import { Container } from 'typedi';
 import { Continent } from '../entity/Continent';
 
 export class ContinentRepository {
-    public _cacheService: ICacheService;
-    public _graphqlService: IGraphqlService;
     private readonly cacheKey = 'continent-list';
-    constructor() {
+    constructor(protected _cacheService: ICacheService, protected _graphqlService: IGraphqlService) {
         this._cacheService = Container.get(CacheService);
         this._graphqlService = Container.get(GraphqlService);
     }
