@@ -1,17 +1,17 @@
+import { ICountryRepository } from './../interfaces/ICountryRepository';
 import { Country } from './../entity/Country';
 import { GraphqlService } from './../services/GraphqlService';
 import { CacheService } from './../services/CacheService';
-import { Container } from 'typedi';
+import { Container, Service } from 'typedi';
 import { IGraphqlService } from './../interfaces/IGraphqlService';
 import { ICacheService } from './../interfaces/ICacheService';
 
-export class CountryRepository {
-    constructor(protected _cacheService: ICacheService, protected _graphqlService: IGraphqlService) {
-        this._cacheService = Container.get(CacheService);
-        this._graphqlService = Container.get(GraphqlService);
-    }
+@Service()
+export class CountryRepository implements ICountryRepository {
+    private _cacheService: ICacheService = Container.get(CacheService);
+    private _graphqlService: IGraphqlService = Container.get(GraphqlService);
 
-    public async getContinentCountries(continentCode: string): Promise<Country[]> {
+    public async getCountriesByContinentCode(continentCode: string): Promise<Country[]> {
         let result: Country[] = [];
         const cacheEnabled: boolean = this._cacheService.isConnected();
         if (cacheEnabled) {

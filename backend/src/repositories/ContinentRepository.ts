@@ -1,16 +1,16 @@
 import { GraphqlService } from './../services/GraphqlService';
-import { IGraphqlService } from './../interfaces/IGraphqlService';
 import { CacheService } from './../services/CacheService';
+import { IContinentRepository } from './../interfaces/IContinentRepository';
+import { IGraphqlService } from './../interfaces/IGraphqlService';
 import { ICacheService } from './../interfaces/ICacheService';
-import { Container } from 'typedi';
 import { Continent } from '../entity/Continent';
+import Container, { Service } from 'typedi';
 
-export class ContinentRepository {
+@Service()
+export class ContinentRepository implements IContinentRepository {
     private readonly cacheKey = 'continent-list';
-    constructor(protected _cacheService: ICacheService, protected _graphqlService: IGraphqlService) {
-        this._cacheService = Container.get(CacheService);
-        this._graphqlService = Container.get(GraphqlService);
-    }
+    private _cacheService: ICacheService = Container.get(CacheService);
+    private _graphqlService: IGraphqlService = Container.get(GraphqlService);
 
     public async getContinents(): Promise<Continent[]> {
         let result: Continent[] = [];
