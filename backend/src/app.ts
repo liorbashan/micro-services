@@ -8,6 +8,7 @@ import { createExpressServer, useContainer } from 'routing-controllers';
     Container.get(CacheService);
     useContainer(Container);
     const app = createExpressServer({
+        cors: true,
         controllers: [baseDir + '//controllers/*{.js,.ts}'],
         // middlewares: [baseDir + "/modules/**/middlewares/*{.js,.ts}"]
     });
